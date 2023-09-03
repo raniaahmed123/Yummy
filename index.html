@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy</title>
+    <link rel="icon" href="./images/logo.png">
+
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container-fluid d-flex m-0 position-relative" >
+<div class="loading">
+    <span class="loader "></span>
+
+</div>
+        <section id="sidenav" class="d-flex position-fixed " >
+            <div id="blackside" class="blackside  " >
+                <div class="links">
+                <ul class="list-unstyled ps-4 pt-3 text-white ">
+                    <li class="pt-3 Search" onclick="showSearch()">Search</li>
+                    <li class="pt-3 Categories" onclick="showCategories()">Categories</li>
+                    <li class="pt-3" onclick="showArea()">Area</li>
+                    <li class="pt-3" onclick="showIngredients()">Ingredients</li>
+                    <li class="pt-3" onclick="showContactUs()">Contact Us</li>
+                    
+                </ul>
+            </div>
+        
+            <div class="footer text-white ps-4 position-absolute  ">
+                <div class="icon d-flex">
+                    <i class="fa-brands fa-facebook ms-2"></i>
+                    <i class="fa-brands fa-twitter ms-2"></i>
+                    <i class="fa-solid fa-globe ms-2"></i>
+                </div>
+                <div class="copywrite w-75">
+                    <p >Copyright Â© 2019 All Rights Reserved.</p>
+                </div>
+            </div>
+            </div>
+                <div class="whiteside text-center d-flex flex-column justify-content-between">
+                    <img src="./images/logo.png" class="w-75 mt-4 ms-2" alt="logo"/>
+                    <i class="fa-solid fa-bars fa-2x "></i>
+                <i id="close" class="fa-solid open-close-icon fa-2x fa-x"></i>
+                <div class="text-center d-flex flex-column">
+                    <i class="fa-solid fa-globe m-2"></i>
+                    <i class="fa-solid fa-share-nodes mb-2"></i>
+                </div>
+        
+                </div>
+        
+        </section>
+        
+           
+        <section class="home p-5 mx-auto  justify-content-between ">
+            <section class ="searchbox mb-3 d-none">
+                <div class="container  content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                
+                                <input type="text" class="form-control bg-transparent text-white" placeholder="Search By Name" onkeyup="searchByName(this.value)">
+                              </div>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control bg-transparent text-white" placeholder="Search By First Letter" onkeyup="searchByFirstLetter(this.value)">
+                </div>
+    
+               
+                </div>
+                </div>
+    
+            </section>
+                <div class="row allmeals">
+                </div>
+        </section>
+
+        <section class = "meal p-5 mx-auto ms-5 text-white d-none">
+            
+            </div>
+
+        </section>
+
+
+
+    </div>
+
+
+
+
+
+    
+
+<script src="./js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
