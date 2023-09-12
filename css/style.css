@@ -116,3 +116,23 @@ h4{
   li{
     cursor: pointer;
   }
+
+
+
+ .cat-img:hover .cat-caption{
+  visibility: visible;
+  transform: translateY(-100%);
+}
+
+
+.cat-caption{
+
+  background-color:rgba(255, 255, 255, 0.7) ;
+  visibility: hidden;
+  top: 150%;
+  transition: all .7s;
+}
+.cat-img {
+  overflow: hidden;
+  cursor: pointer;
+}
