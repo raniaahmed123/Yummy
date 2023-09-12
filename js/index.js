@@ -1,7 +1,10 @@
  
 
 var allMeals=[];
+var allcategories = [];
 getData()
+$(".open-close-icon").hide()
+
 function getData(){
     var req = new XMLHttpRequest()
 req.open("GET","https://www.themealdb.com/api/json/v1/1/search.php?s=")
@@ -9,52 +12,24 @@ req.send();
 req.addEventListener("readystatechange", function(){
     
 
-    // console.log(req.readyState);
     if(req.readyState == 4 && req.status == 200){
        allMeals = JSON.parse(req.response).meals;
        displayAllMeals();
-        // console.log(allMeals.length)
-        // console.log(allMeals);
-        
+     
 
     
     }
 });
 }
 
-// document.querySelector(".fa-bars").addEventListener('click' , function(){
-      
-//    this.classList.remove('d-block')
-//    this.classList.add('d-none');
-
-//     document.getElementById("blackside").classList.remove('d-none');
-//     document.getElementById("blackside").classList.add('d-block');
-//     document.getElementById("close").classList.remove('d-none');
-//     document.getElementById("close").classList.add('d-block');
-
-
-// })
-
-// document.querySelector(".open-close-icon").addEventListener('click' , function(){
-
-       
-//    this.classList.remove('d-block')
-//    this.classList.add('d-none');
-
-
-//     document.getElementById("blackside").classList.remove('d-block');
-//     document.getElementById("blackside").classList.add('d-none');
-//     document.querySelector(".fa-bars").classList.remove('d-none');
-//     document.querySelector(".fa-bars").classList.add('d-block');
-
-
-// })
-// $(".blackside").hide();
-
-$(".open-close-icon").hide()
-// $(".links").hide()
-
-
+function openNav(){
+    $(".open-close-icon").click(function(){
+        $(".fa-bars").show()
+        $(this).hide();
+        $(".blackside").hide(500);
+        
+    })
+}
 $(".fa-bars").click(function(){
     $(".open-close-icon").show()
     $(this).hide();
@@ -66,12 +41,7 @@ $(".fa-bars").click(function(){
     
 })
 
-$(".open-close-icon").click(function(){
-    $(".fa-bars").show()
-    $(this).hide();
-    $(".blackside").hide(500);
-    
-})
+
 
 function displayAllMeals(){
     
@@ -91,17 +61,12 @@ function displayAllMeals(){
         </figure>
 
     </div>`
-    // allMeals[i].addEventListener('click' , function(){
-        
-    // })
+
     
     }
 document.querySelector('.allmeals').innerHTML = cartona;
 
 }
-
-
-
 
     function displayMelaDetails(id)
 
@@ -141,13 +106,8 @@ document.querySelector('.home').classList.add('d-none');
 document.querySelector('.meal').classList.remove('d-none');
 document.querySelector('.meal').innerHTML = cartona;
 
-    // $(".home").hide()
-    // $(".meal").show()
-
 
 }}}
-
-
 
 $(document).ready(function(){
     $('.loading .loader').fadeOut(500 , function(){
@@ -157,34 +117,28 @@ $(document).ready(function(){
     })
 })
 
-
+function closeNav(){
+    $(".open-close-icon").hide()
+    $(".fa-bars").show()
+    $(".blackside").hide(500, function(){
+        $(".links").hide(500)
+        $(".copywrite").hide()
+        
+    });
+}
 
 function showSearch(){
         document.querySelector('.searchbox').classList.remove('d-none')
+        closeNav();
 
-    // $(".search ").click(function(){
-        $(".open-close-icon").hide()
-        $(".fa-bars").show()
-        // $(this).hide();
-        $(".blackside").hide(500, function(){
-            $(".links").hide(500)
-            $(".copywrite").hide()
-            
-        });
-    // }
-    // )
-    // document.querySelector('.home').classList.remove('d-flex')
     document.querySelector('.allmeals').innerHTML='';
-    // document.querySelector('.meal').innerHTML='';
-    // $(".meal").toggle()
 
 
 }
 
-
 function searchByName(mealName){
     var searchReq = new XMLHttpRequest()
-    searchReq.open("GET",`www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
+    searchReq.open("GET",`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
     searchReq.send();
     searchReq.addEventListener("readystatechange", function(){
         
@@ -200,28 +154,54 @@ function searchByName(mealName){
 function searchByFirstLetter(){
 
 }
-// function searchByName(){
+function searchByName(){
     
-//     var cartona = '';
-//     for( var i = 0 ; i < allMeals.length ; i++){
+    var cartona = '';
+    for( var i = 0 ; i < allMeals.length ; i++){
    
-//         cartona+=`<div class="col-md-3">
-//         <figure class= " img position-relative">
-//         <div class="img-link" >
-//             <img src="${allMeals[i].strMealThumb}" class="w-100 rounded-3" onclick = 'displayMealDetails(${allMeals[i]})' alt="mealImg">
+        cartona+=`<div class="col-md-3">
+        <figure class= " img position-relative">
+        <div class="img-link" >
+            <img src="${allMeals[i].strMealThumb}" class="w-100 rounded-3" onclick = 'displayMealDetails(${allMeals[i]})' alt="mealImg">
           
-//             <div class="caption w-100 h-100  position-absolute bottom-0  p-2 rounded-3 my-auto">
-//                 <h4 class="position-absolute top-50">${allMeals[i].strMeal}</h4>
-//                     </div>
-//                     </div>
-//         </figure>
+            <div class="caption w-100 h-100  position-absolute bottom-0  p-2 rounded-3 my-auto">
+                <h4 class="position-absolute top-50">${allMeals[i].strMeal}</h4>
+                    </div>
+                    </div>
+        </figure>
 
-//     </div>`
-//     // allMeals[i].addEventListener('click' , function(){
-        
-//     // })
+    </div>`
     
-//     }
-// document.querySelector('.allmeals').innerHTML = cartona;
+    }
+document.querySelector('.allmeals').innerHTML = cartona;
 
-// }
+}
+
+async function showCategories()
+{
+
+    closeNav();
+$('.home').hide();
+document.querySelector('.categories').classList.remove('d-none');
+
+    const api = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`);
+    const allcategories = await api.json();
+    console.log(allcategories.categories);
+
+    var cartona = '';
+    for( var i = 0 ; i < allcategories.length ; i++){
+   
+        cartona+=`<div class="col-md-3">
+        <figure class= " cat-img  position-relative">
+
+           <img src='${categories.strCategoryThumb}'   alt="allcatergries">
+           <div class="cat-caption w-100 h-100 text-center position-absolute bottom-0  p-2 rounded-3 my-auto ">
+               <h4>${categories.strCategory}</h4>
+               <p>${categories.strCategoryDescription}</p>
+       
+</div>
+</figure>
+   </div>`
+    }
+
+}
